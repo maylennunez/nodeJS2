@@ -1,8 +1,6 @@
 <%- include ('partials/_header') %>
 
-<pre>
-    <%- tasks %>
-</pre>
+
 <div class="container">
     <div class="row">
         <!-- FORM -->
@@ -37,9 +35,9 @@
             <tbody>
                <%- for (var 1 = 0; tasks.length; i ++) { %>
                 <tr>
-                    <td><%= (i + i )%></td>
-                    <td><%= (task[i].title) %></td>
-                    <td><%= (task[i].description) } %></td>
+                    <td><%- (i + i %> )</td>
+                    <td><%- (task[i].title %>) </td>
+                    <td><%- (task[i].description) } %> </td>
                     
                     <td>
                     <a href="" class="btn btn-dark">Done</a>
@@ -54,4 +52,4 @@
         </div>
     </div>
 
-    <%- include ('partials/_footer') %>
+    <%- include 'partials/_footer') %>
