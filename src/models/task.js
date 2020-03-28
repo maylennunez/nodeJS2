@@ -6,8 +6,9 @@ const Schema = mongoose.Schema;
 
 // create schema
    const TaskSchema = new Schema({
-    title: String,
+    title : String,
     description: String,
+    
     status: {
         type: Boolean,
         default: false

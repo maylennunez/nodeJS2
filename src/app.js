@@ -11,7 +11,7 @@ const indexRoutes = require('./routes/index');
 // connecting to db
 
 mongoose.connect('mongodb://localhost/crud-mongo')
-.then(db => console.log('db connected'))
+.then(db => console.log('Db connected'))
 .catch(err => console.log(err))
 // Settings
 
