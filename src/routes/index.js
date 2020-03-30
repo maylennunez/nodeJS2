@@ -11,6 +11,7 @@ res.render('index', {
 });
 });
 
+// add task
 
 router.post('/add', async(req, res) => {
     // console.log(req.body);
@@ -18,6 +19,16 @@ router.post('/add', async(req, res) => {
    await task.save();
     res.send(redirect('/'));
 })
+
+router.get('/done/:id', async (req, res ) =>{
+    const {id} = req.params;
+    const task = await Task.findById();   // to find id
+    // console.log(task);
+    task.status = !task.status;           // change status  
+     await task.save();                  // save status
+     res.send(redirect('/'));
+})
+
 
 router.get('/delete/:id', async( req, res) => {
 const {id} = req.params;
