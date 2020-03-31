@@ -41,6 +41,12 @@ router.get('/edit/:id', async (req, res) => {
     });
 });
 
+router.post('/edit/:id', async (req, res)=>{
+    const {id} = req.params;
+    await Task.update({_id: id }, req.body);
+    res.send(redirect('/'));
+});
+
 // delete btn
 
 router.get('/delete/:id', async( req, res) => {
