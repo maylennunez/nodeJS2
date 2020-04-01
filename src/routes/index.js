@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const task = require('../models/task');
+const Task = require('../models/task');
 
 router.get('/', async (req, res) => {
  const tasks = await Task.find();
@@ -13,18 +13,18 @@ res.render('index', {
 
 // add task
 
-router.post('/add', async(req, res) => {
+router.post('/add', async (req, res, next) => {
     // console.log(req.body);
-    const task = new task(req.body);
+    const task = new Task(req.body);
    await task.save();
-    res.send(redirect('/'));
+    res.redirect('/');
 })
 
 // done btn 
 
-router.get('/done/:id', async (req, res ) =>{
+router.get('/done/:id', async (req, res, next) => {
     const {id} = req.params;
-    const task = await Task.findById();       // to find id
+    const task = await Task.findById(id);       // to find id
     // console.log(task);
     task.status = !task.status;               // change status  
      await task.save();                      // save status
@@ -34,14 +34,14 @@ router.get('/done/:id', async (req, res ) =>{
 // edit btn
 
 router.get('/edit/:id', async (req, res) => {
-    const {id} = req.params;
-    const task = await Task.findById(); 
+    // const {id} = req.params;
+    const task = await Task.findById(req.params.id); 
     res.render('edit', {
         task
     });
 });
 
-router.post('/edit/:id', async (req, res)=>{
+router.post('/edit/:id', async (req, res, next )=>{
     const {id} = req.params;
     await Task.update({_id: id }, req.body);
     res.send(redirect('/'));
@@ -49,12 +49,13 @@ router.post('/edit/:id', async (req, res)=>{
 
 // delete btn
 
-router.get('/delete/:id', async( req, res) => {
+router.get('/delete/:id', async( req, res, next) => {
 const {id} = req.params;
 // res.send("received")
  await Task.remove({_id: id})
 res.redirect('/');
 });
+
 
 
 

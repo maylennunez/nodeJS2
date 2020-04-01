@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 
 // create schema
-   const TaskSchema = new Schema({
+   const TaskSchema =  Schema({
     title : String,
     description: String,
     
